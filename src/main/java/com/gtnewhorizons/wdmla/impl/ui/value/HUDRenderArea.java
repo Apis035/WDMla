@@ -17,7 +17,9 @@ import mcp.mobius.waila.utils.Constants;
 
 public class HUDRenderArea {
 
-    private static final int MARGIN = 5;
+    private static final int MARGIN_W = 5;
+    private static final int MARGIN_H = 3;
+    private static final int OFFSET_Y = 2;
 
     private final @NotNull Size hudSize;
 
@@ -30,8 +32,8 @@ public class HUDRenderArea {
                 ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_POSX, 0),
                 ConfigHandler.instance().getConfig(Configuration.CATEGORY_GENERAL, Constants.CFG_WAILA_POSY, 0));
 
-        float w = hudSize.getW() + MARGIN * 2;
-        float h = hudSize.getH() + MARGIN * 2;
+        float w = hudSize.getW() + MARGIN_W * 2;
+        float h = hudSize.getH() + MARGIN_H * 2;
 
         Minecraft mc = Minecraft.getMinecraft();
         ScaledResolution res = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
@@ -45,6 +47,6 @@ public class HUDRenderArea {
 
     public Area computeForeground() {
         Area bg = computeBackground();
-        return new Area(bg.getX() + MARGIN, bg.getY() + MARGIN, bg.getW(), bg.getH());
+        return new Area(bg.getX() + MARGIN_W, bg.getY() + MARGIN_H + OFFSET_Y, bg.getW(), bg.getH());
     }
 }
